@@ -53,8 +53,8 @@ public class Client {
          */
 
         /**
-         * Spring的依赖注入:
-         *      构造函数的注入：
+         * Spring的三种依赖注入:
+         *      一、构造函数的注入：
          *      <constructor-arg name="name" value="张三"/>
          *      标签中的属性（常用）
          *          value：用于提供基本类型和String类型
@@ -63,6 +63,26 @@ public class Client {
          *          在获取bean对象的时候，注入数据是必须的操作，否则对象没有办法创建成功
          *      弊端：
          *          改变了Bean的实例化的方式，使我们在创建对象的时候，如果用不到这些的数据，也必须提供
+         *
+         *     二、使用set方法注入
+         *      <property name="name" value="张三"/>
+         *      标签属性
+         *          name：用于指定注入时所调用的set方法名称
+         *          value：用于提供基本数据类型和引用数据类型
+         *          ref：用于指定其他的bean数据类型
+         *
+         *     三、集合的方式注入
+         *     <property name="myList">
+         *             <list>
+         *                 <value>AAA</value>
+         *                 <value>BBB</value>
+         *                 <value>CCC</value>
+         *             </list>
+         *      </property>
+         *      用于List集合的注入标签：
+         *      list（常用）
+         *      用于Map机构的方式注入：
+         *      Map（常用）
          */
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         IAccount account = applicationContext.getBean("account",IAccount.class);
