@@ -1,11 +1,8 @@
 package com.imust.web;
 
-import com.imust.service.IAccount;
-import org.springframework.beans.factory.BeanFactory;
+import com.imust.service.IAccountService;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
  * Author: wangJianBo
@@ -14,6 +11,8 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
  */
 public class Client {
     public static void main(String[] args) {
+
+       // ====================== 基于XML的IOC ================================
         /**
          * ApplicationContext 的三个实现类：
          * ClassPathXmlApplicationContext 类路径下的配置文件
@@ -84,8 +83,48 @@ public class Client {
          *      用于Map机构的方式注入：
          *      Map（常用）
          */
+
+        // ====================== 基于注解的IOC ================================
+
+        /**
+         *  用于创建的@Component注解（用于自动装配Bean）
+         *  他的作用和XML中的bean的作用是一样的
+         *      @Component：
+         *          作用：用于把当前类对象存入Spring容器中
+         *          属性：
+         *              value：用于指定bean的id，当我们不写的时候默认为当前类的名字且首字母小写
+         *      @Service : 一般用于业务层
+         *      @Controller ： 一般用于表现层
+         *      @Repository ：一般用于持久层
+         */
+
+        /**
+         * 用于注入数据的
+         *      他们的作用和<property></property>标签的作用是一致的
+         *      @Autowired:
+         *          作用：自动按照数据类型进行注入。首先会按照数据类型进行注入IAccountDao，当发现有唯一的数据类型的时候就会进行注入，如果发现数据类型并不唯一的情况下（例如继承的接口类型一致的两个类）
+         *              将会按照在相同的数据类型下的类的名字进行注入accountDao，如果没有发现相同的名字将会注入失败
+         *      @Resource(name = "accountDao")
+         *          作用：直接按照bean的id注入。他可以独立的使用
+         *          属性：
+         *              name：用于指定bean的id；
+         *      以上两个注解都只能注入其他的bean类型的数据，而基本类型和String类型没有办法使用上述注解实现集合类型只能使用xml类型实现
+         *
+         *      value
+         *          作用：用于注入基本的数据类型和String数据类型
+         *
+         */
+
+        /**
+         *
+         *用于改变作用范围
+         *      scope
+         *        作用：指定bean的作用范围
+         *        属性：
+         *             value：指定范围的取值。常用的取值：singleton prototype
+         */
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
-        IAccount account = applicationContext.getBean("account",IAccount.class);
-        System.out.println(account);
+        IAccountService account = applicationContext.getBean("accountService", IAccountService.class);
+        account.getAllAccount();
     }
 }

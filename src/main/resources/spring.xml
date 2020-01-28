@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--<bean class="com.imust.service.Impl.Account" id="account">-->
-        <!--<constructor-arg name="name" value="张三"/>-->
-        <!--<constructor-arg name="age" value="18"/>-->
-        <!--<constructor-arg name="brithday" ref="day"/>-->
+    <!--&lt;!&ndash;创建Service对象&ndash;&gt;-->
+    <!--<bean class="com.imust.service.Impl.AccountService" id="accountService">-->
+        <!--<property name="accountDao" ref="accountDao"/>-->
     <!--</bean>-->
 
-    <bean class="com.imust.service.Impl.Account" id="account">
-        <property name="name" value="张三"/>
-        <property name="age" value="18"/>
-        <property name="brithday" ref="day"/>
+    <!--&lt;!&ndash;创建AccountDao对象&ndash;&gt;-->
+    <!--<bean class="com.imust.dao.Impl.AccountDao" id="accountDao">-->
+        <!--<property name="queryRunner" ref="queryRunner"/>-->
+    <!--</bean>-->
 
-        <property name="myList">
-            <list>
-                <value>AAA</value>
-                <value>BBB</value>
-                <value>CCC</value>
-            </list>
-        </property>
+    <!--&lt;!&ndash;配置QueryRunner对象&ndash;&gt;-->
+    <!--<bean class="org.apache.commons.dbutils.QueryRunner" scope="prototype" id="queryRunner">-->
+        <!--&lt;!&ndash;配置数据源&ndash;&gt;-->
+        <!--<constructor-arg name="ds" ref="dataSource"/>-->
+    <!--</bean>-->
 
-        <property name="myMap">
-            <map>
-                <entry key="A" value="1"/>
-                <entry key="B" value="2"/>
-            </map>
-        </property>
-    </bean>
-    <!--<bean class="com.imust.service.Impl.Account" factory-bean="account" factory-method="Account"/>-->
-
-
-    <bean id="day" class="java.util.Date"/>
+    <!--&lt;!&ndash;配置C3p0的数据源&ndash;&gt;-->
+    <!--<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+        <!--<property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy"/>-->
+        <!--<property name="user" value="root"/>-->
+        <!--<property name="password" value="123456"/>-->
+    <!--</bean>-->
 </beans>
