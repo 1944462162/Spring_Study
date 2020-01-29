@@ -3,10 +3,9 @@ package com.imust.config;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -41,6 +40,9 @@ import java.beans.PropertyVetoException;
 @Configuration
 @ComponentScan("com.imust")
 @PropertySource("classpath:jdbcConfig.properties")
+//开启事务控制注解的支持
+@EnableTransactionManagement
+@Import(value = TranesactionConfig.class)
 public class SpringConfiguration {
 
     @Value("${jdbc.driver}")
@@ -55,9 +57,14 @@ public class SpringConfiguration {
     @Value("${jdbc.password}")
     private String password;
 
-    @Bean("runner")
-    public QueryRunner creatQueryRunner(DataSource dataSource){
-        return new QueryRunner(dataSource);
+//    @Bean("runner")
+//    public QueryRunner creatQueryRunner(DataSource dataSource){
+//        return new QueryRunner(dataSource);
+//    }
+
+    @Bean
+    public JdbcTemplate creatJdbcTemplate(DataSource dataSource){
+        return new JdbcTemplate(dataSource);
     }
 
 

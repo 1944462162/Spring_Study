@@ -27,4 +27,24 @@ public interface IAccountDao {
      * @return
      */
     int deleteAccount();
+
+    /**
+     * 通过ID寻找账户
+     * @param accountId
+     * @return
+     */
+    Account findAccountById(Integer accountId);
+
+    /**
+     * 通过名字寻找账户
+     * @param name
+     * @return
+     */
+    Account findAccountByName(String name);
+
+    /**
+     * 更新账户
+     * @param account
+     */
+    void updateAccount(Account account);
 }
