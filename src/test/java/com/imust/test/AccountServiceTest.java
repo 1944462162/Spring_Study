@@ -22,7 +22,7 @@ public class AccountServiceTest {
         IAccountService accountService = applicationContext.getBean("accountService",IAccountService.class);
 
 //        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-
+//
 //        IAccountService accountService = applicationContext.getBean("accountService",IAccountService.class);
 //        List<Account> allAccount = accountService.getAllAccount();
 //
@@ -30,8 +30,8 @@ public class AccountServiceTest {
 //            System.out.println(account);
 //        }
         accountService.saveAccount();
-        accountService.updateAccount(1);
-        accountService.deleteAccount();
+//        accountService.updateAccount(1);
+//        accountService.deleteAccount();
     }
 
 }

@@ -17,10 +17,10 @@ import java.util.List;
  * Content:
  */
 
-//@Repository
+@Repository
 public class AccountDao implements IAccountDao {
 
-//    @Autowired
+    @Autowired
     private QueryRunner queryRunner;
 
     public void setQueryRunner(QueryRunner queryRunner) {

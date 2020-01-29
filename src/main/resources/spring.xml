@@ -5,51 +5,63 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!--创建Service对象-->
-    <bean class="com.imust.service.Impl.AccountService" id="accountService">
-        <property name="accountDao" ref="accountDao"/>
-    </bean>
+    <context:component-scan base-package="com.imust"/>
+    <!--&lt;!&ndash;创建Service对象&ndash;&gt;-->
+    <!--<bean class="com.imust.service.Impl.AccountService" id="accountService">-->
+        <!--<property name="accountDao" ref="accountDao"/>-->
+    <!--</bean>-->
 
-    <!--创建AccountDao对象-->
-    <bean class="com.imust.dao.Impl.AccountDao" id="accountDao">
-        <property name="queryRunner" ref="queryRunner"/>
-    </bean>
+    <!--&lt;!&ndash;创建AccountDao对象&ndash;&gt;-->
+    <!--<bean class="com.imust.dao.Impl.AccountDao" id="accountDao">-->
+        <!--<property name="queryRunner" ref="queryRunner"/>-->
+    <!--</bean>-->
 
-    <!--配置QueryRunner对象-->
-    <bean class="org.apache.commons.dbutils.QueryRunner" scope="prototype" id="queryRunner">
-        <!--配置数据源-->
-        <constructor-arg name="ds" ref="dataSource"/>
-    </bean>
+    <!--&lt;!&ndash;配置QueryRunner对象&ndash;&gt;-->
+    <!--<bean class="org.apache.commons.dbutils.QueryRunner" scope="prototype" id="queryRunner">-->
+        <!--&lt;!&ndash;配置数据源&ndash;&gt;-->
+        <!--<constructor-arg name="ds" ref="dataSource"/>-->
+    <!--</bean>-->
 
-    <!--配置C3p0的数据源-->
-    <bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy"/>
-        <property name="user" value="root"/>
-        <property name="password" value="123456"/>
-    </bean>
+    <!--&lt;!&ndash;配置C3p0的数据源&ndash;&gt;-->
+    <!--<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+        <!--<property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/eesy"/>-->
+        <!--<property name="user" value="root"/>-->
+        <!--<property name="password" value="123456"/>-->
+    <!--</bean>-->
 
-    <!--配置logger类-->
-    <bean id="logger" class="com.imust.utils.Logger"/>
+    <!--&lt;!&ndash;配置logger类&ndash;&gt;-->
+    <!--<bean id="logger" class="com.imust.utils.Logger"/>-->
 
-    <!--配置Aop-->
-    <aop:config>
-        <!--表明配置切面Aop ref:指定通知类bean的id
-                          id属性：是给一个切面提供一个唯一标识-->
-        <aop:aspect ref="logger" id="logAdvice">
+    <!--&lt;!&ndash;配置Aop&ndash;&gt;-->
+    <!--<aop:config>-->
 
-            <!--配置前置通知  method属性： 用于指定logger类中的哪个方法是前置通知
-                            pointcut属性：用于制定切入点表达式，该表达式的含义是对业务层的哪些方法增强
-
-                切入点表达式的写法：
-                       关键字：execution(表达式)
-                       表达式：返回值 包名.包名.包名...类名.方法名（参数列表）
-                       标准表达式的写法：
-                               public void com.imust.service.Impl.AccountService.saveAccount()-->
-            <aop:before method="printLog" pointcut="execution(* com.imust.service.Impl.*.*(..))"/>
-        </aop:aspect>
-    </aop:config>
+        <!--&lt;!&ndash;配置切入点表达式 id 属性用于指定表达式的唯一标识。expression属性用于指定表达式的内容-->
+                <!--此标签写在aop：aspect标签内部只能是当前切面使用。-->
+                <!--它还可以写在aop：aspect标签外部，此时就变成了所有切面可用&ndash;&gt;-->
+        <!--<aop:pointcut id="pt1" expression="execution(* com.imust.service.Impl.*.*(..))"/>-->
 
 
+        <!--&lt;!&ndash;表明配置切面Aop ref:指定通知类bean的id-->
+                          <!--id属性：是给一个切面提供一个唯一标识&ndash;&gt;-->
+        <!--<aop:aspect ref="logger" id="logAdvice">-->
+
+            <!--&lt;!&ndash;配置前置通知  method属性： 用于指定logger类中的哪个方法是前置通知-->
+                            <!--pointcut属性：用于制定切入点表达式，该表达式的含义是对业务层的哪些方法增强-->
+
+                <!--切入点表达式的写法：-->
+                       <!--关键字：execution(表达式)-->
+                       <!--表达式：返回值 包名.包名.包名...类名.方法名（参数列表）-->
+                       <!--标准表达式的写法：-->
+                               <!--public void com.imust.service.Impl.AccountService.saveAccount()&ndash;&gt;-->
+            <!--&lt;!&ndash;<aop:before method="printLog" pointcut-ref="pt1"/>&ndash;&gt;-->
+            <!---->
+            <!--&lt;!&ndash;配置环绕通知&ndash;&gt;-->
+            <!--<aop:around method="arroundPringlog" pointcut-ref="pt1"/>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+    <!--开启Aop的支持-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 </beans>
