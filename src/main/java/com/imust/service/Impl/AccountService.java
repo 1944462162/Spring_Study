@@ -18,18 +18,32 @@ import java.util.List;
  * Content:
  */
 
-@Service
+//@Service
 //@Scope("prototype")
 public class AccountService implements IAccountService {
 
-    @Autowired
+//    @Autowired
    private IAccountDao accountDao;
 
-//    public void setAccountDao(IAccountDao accountDao) {
-//        this.accountDao = accountDao;
-//    }
+    public void setAccountDao(IAccountDao accountDao) {
+        this.accountDao = accountDao;
+    }
 
     public List<Account> getAllAccount() {
         return accountDao.getAllAccount();
+    }
+
+
+    public void saveAccount() {
+        accountDao.saveAccount();
+    }
+
+    public void updateAccount(int i) {
+        accountDao.updateAccount(i);
+    }
+
+    public int deleteAccount() {
+        accountDao.deleteAccount();
+        return 0;
     }
 }

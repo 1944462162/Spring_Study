@@ -17,15 +17,15 @@ import java.util.List;
  * Content:
  */
 
-@Repository
+//@Repository
 public class AccountDao implements IAccountDao {
 
-    @Autowired
+//    @Autowired
     private QueryRunner queryRunner;
 
-//    public void setQueryRunner(QueryRunner queryRunner) {
-//        this.queryRunner = queryRunner;
-//    }
+    public void setQueryRunner(QueryRunner queryRunner) {
+        this.queryRunner = queryRunner;
+    }
 
     public List<Account> getAllAccount() {
         try {
@@ -34,4 +34,19 @@ public class AccountDao implements IAccountDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void saveAccount() {
+        System.out.println("执行了保存");
+    }
+
+    public void updateAccount(int i) {
+        System.out.println("执行了更新");
+    }
+
+    public int deleteAccount() {
+        System.out.println("执行了删除");
+        return 0;
+    }
+
+
 }

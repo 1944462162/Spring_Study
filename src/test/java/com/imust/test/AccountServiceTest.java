@@ -18,17 +18,20 @@ import java.util.List;
 public class AccountServiceTest {
     @Test
     public void testFindAll(){
-//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
-//        IAccountService accountService = applicationContext.getBean("accountService",IAccountService.class);
-
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         IAccountService accountService = applicationContext.getBean("accountService",IAccountService.class);
-        List<Account> allAccount = accountService.getAllAccount();
 
-        for (Account account : allAccount) {
-            System.out.println(account);
-        }
+//        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+
+//        IAccountService accountService = applicationContext.getBean("accountService",IAccountService.class);
+//        List<Account> allAccount = accountService.getAllAccount();
+//
+//        for (Account account : allAccount) {
+//            System.out.println(account);
+//        }
+        accountService.saveAccount();
+        accountService.updateAccount(1);
+        accountService.deleteAccount();
     }
 
 }
