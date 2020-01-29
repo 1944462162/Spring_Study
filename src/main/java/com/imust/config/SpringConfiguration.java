@@ -28,7 +28,7 @@ import java.beans.PropertyVetoException;
  * Bean
  *      作用：用于把当前方法的返回值作为bean对象存入Spring的IOC容器中
  *      属性：
- *          nam：用于bean的id。当不写的时候，默认值是当前方法的名称
+ *          name：用于bean的id。当不写的时候，默认值是当前方法的名称
  *      细节：
  *          查找的方式和Autowired注解的作用是一样的
  * Import
