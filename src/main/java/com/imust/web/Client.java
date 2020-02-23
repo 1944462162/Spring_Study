@@ -18,6 +18,10 @@ public class Client {
          * ClassPathXmlApplicationContext 类路径下的配置文件
          * AnnotationConfigApplicationContext 注解下的配置文件
          * FileSystemXmlApplicationContext 系统磁盘下的配置文件
+         *
+         *
+         * ApplicationContext 的作用：
+         * 获取spring的IOC容器，并根据id获取对象
          */
 
         /**
@@ -39,6 +43,18 @@ public class Client {
          */
 
         /**
+         * bean的作用范围：
+         *   bean标签的scope属性：
+         *      作用： 用于指定bean的作用范围
+         *      取值： 常用的是单例还有多例的
+         *          singleton: 单例的（默认值）
+         *          prototype: 多例的
+         *          request: 作用于web应用的请求范围
+         *          session： 作用于web应用的会话范围
+         *          global-session: 作用于集群环境的会话范围（全局会话范围），当不是集群环境的时候就是session
+         */
+
+        /**
          * Bean的生命周期：
          * 单例对象
          *      出生：当创建时对象出生
@@ -46,9 +62,9 @@ public class Client {
          *      死亡：容器销毁对象死亡
          *      总结：单利对象的生命周期和容器相同
          * 多例对象
-         *      出生：当我们适用对象的时候Spring为我们创建
+         *      出生：当我们使用对象的时候Spring为我们创建
          *      活着：对象只要在使用过程中就一直活着
-         *      死亡：对象长期不适用，并且别的对象没有引用的时候，由Java回收器回收
+         *      死亡：对象长期不使用，并且别的对象没有引用的时候，由Java回收器回收
          */
 
         /**
