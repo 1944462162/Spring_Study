@@ -30,6 +30,17 @@
         <property name="password" value="123456"/>
     </bean>
 
+    <!-- spring中基于XML的AOP配置步骤
+        1、把通知Bean也交给spring来管理
+        2、使用aop:config标签表明开始AOP的配置
+        3、写明切入点表达式
+        4、使用aop:aspect标签表明配置切面
+               id属性：是给切面提供一个唯一标识
+               ref属性：是指定通知类的bean的id。
+        5、在aop:aspect内部使用对应的标签来配置通知类的类型
+    -->
+
+
     <!--配置logger类-->
     <bean id="logger" class="com.imust.utils.Logger"/>
 

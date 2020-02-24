@@ -48,6 +48,7 @@ import java.beans.PropertyVetoException;
 @PropertySource("classpath:jdbcConfig.properties")
 //开启事务控制注解的支持
 @EnableTransactionManagement
+@EnableAspectJAutoProxy // 开启AOP注解的支持
 @Import(value = TranesactionConfig.class)
 public class SpringConfiguration {
 
